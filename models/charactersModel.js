@@ -1,11 +1,15 @@
 const mongoose = require("../config/mongodb");
 
 const charactersSchema = mongoose.Schema({
-  name: String,
-  age: Number,
-  gender: String,
+  name: {
+    type: String,
+    required: [true, "El campo es olbigatorio"],
+  },
   status: String,
+  gender: String,
   affiliation: String,
+  episode: String,
+  image: String,
 });
 
 const charactersModel = mongoose.model("characters", charactersSchema);

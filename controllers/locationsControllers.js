@@ -1,8 +1,8 @@
-const CharactersModel = require("../models/charactersModel");
+const LocationsModel = require("../models/locationsModel");
 
 const getAll = async function (req, res, next) {
   try {
-    const document = await CharactersModel.find();
+    const document = await LocationsModel.find();
     res.status(200).json(document);
   } catch (e) {
     console.log(e);
@@ -12,7 +12,7 @@ const getAll = async function (req, res, next) {
 
 const getById = async function (req, res, next) {
   try {
-    const document = await CharactersModel.findById(req.params.id);
+    const document = await LocationsModel.findById(req.params.id);
     res.status(200).json(document);
   } catch (e) {
     console.log(e);
@@ -21,13 +21,11 @@ const getById = async function (req, res, next) {
 
 const create = async function (req, res, next) {
   try {
-    const character = new CharactersModel({
+    const character = new LocationsModel({
       name: req.body.name,
-      status: req.body.status,
-      gender: req.body.gender,
-      episode: req.body.episode,
-      affiliation: req.body.affiliation,
-      image: req.body.image,
+      territory: req.body.territory,
+      region: req.body.region,
+      img: req.body.img,
     });
     const document = await character.save();
     res.status(201).json(document);
@@ -39,7 +37,7 @@ const create = async function (req, res, next) {
 
 const update = async function (req, res, next) {
   try {
-    await CharactersModel.updateOne({ _id: req.params.id }, req.body);
+    await LocationsModel.updateOne({ _id: req.params.id }, req.body);
     res.status(204).json();
   } catch (e) {
     console.log(e);
@@ -48,7 +46,7 @@ const update = async function (req, res, next) {
 
 const deleteChar = async function (req, res, next) {
   try {
-    await CharactersModel.deleteOne({ _id: req.params.id });
+    await LocationsModel.deleteOne({ _id: req.params.id });
     res.status(204).json();
   } catch (e) {
     console.log(e);
