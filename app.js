@@ -11,6 +11,24 @@ const locationsRouter = require("./routes/locations");
 
 var app = express();
 
+//**HEADER INICIO CORS */
+app.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,DELETE,PUT");
+  next();
+});
+app.options("/*", function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,POST,DELETE,PUT,OPTIONS");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, Content-Length, X-Requested-With, x-access-token"
+  );
+  res.send(200);
+});
+
+/**HEADER FIN CORS   */
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
